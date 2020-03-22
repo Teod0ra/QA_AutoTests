@@ -1,4 +1,14 @@
-package PACKAGE_NAME;
+import lombok.Getter;
+import lombok.Setter;
 
-public class ClientAccount {
+@Getter
+@Setter
+public class ClientAccount implements ClientInfo{
+
+    private long amountAvailable;
+    private long dailyLimit;
+    private String clientName;
+    private String cardPinNumber;
+
+
 }

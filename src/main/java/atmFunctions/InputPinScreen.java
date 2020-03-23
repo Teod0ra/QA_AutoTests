@@ -4,7 +4,8 @@ import bankInformation.ClientAccount;
 
 public class InputPinScreen implements UserInput{
 
-    private static final int MAX_PIN_ATTEMPTS=2;
+    private static final int MAX_PIN_ATTEMPTS = 3;
+    public int tries = 0;
 
     ClientAccount clientAccount;
     @Override
@@ -12,14 +13,18 @@ public class InputPinScreen implements UserInput{
         clientAccount = new ClientAccount();
         clientAccount.setCardPinNumber("1234");
 
-        int tries = 0;
+        if(tries == MAX_PIN_ATTEMPTS){
+            System.out.println("Max pin attempts");
+            return false;
+        }
         boolean correctPin = pin.equals(clientAccount.getCardPinNumber());
-        while(!correctPin && tries <= MAX_PIN_ATTEMPTS){
+        if(!correctPin && tries < MAX_PIN_ATTEMPTS){
             System.out.println("Wrong pin");
             if(tries == MAX_PIN_ATTEMPTS){
+                System.out.println("Max pin attempts");
                 return false;
             }
-            tries++;
+           return false;
         }
         return true;
 
